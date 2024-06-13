@@ -44,13 +44,18 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
 
   const handlePassKeyAuthorization = useCallback(async () => {
     try {
-      await requestPassKeyAuthorization();
+      await requestPassKeyAuthorization({
+        payload: '',
+        subOrgId: '',
+        walletAddress: 'holla',
+      });
       navigation.navigate('UserDetails', {
         userId: 'Pass QA Tester',
         name: 'Pass QA Tester name',
         displayName: 'QA Tester name',
       });
     } catch (error) {
+      console.log(error);
       Alert.alert('Authorization Error', JSON.stringify(error));
     }
   }, [navigation]);
@@ -129,6 +134,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: 'transparent',
   },
   title: {
     fontSize: 32,
@@ -145,7 +151,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     marginBottom: 20,
-    color: '#555',
   },
   support: {
     fontSize: 16,
