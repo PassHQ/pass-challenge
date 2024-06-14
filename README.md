@@ -46,7 +46,7 @@ Follow these steps to set up the project locally:
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/PassHQ/pass-challenge.git
-    cd pass-challenge
+    cd pass-challenge/pass-app
     ```
 
 2. **Install dependencies**:
@@ -54,7 +54,7 @@ Follow these steps to set up the project locally:
     npm install
     ```
 
-3. **Install pods for iOS**:
+3. **Install pods for iOS (for windows skip to step 4)**:
     ```sh
     npx pod-install
     ```
@@ -92,6 +92,7 @@ Follow these steps to set up the project locally:
 
 If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
 
+
 # Learn More
 
 To learn more about React Native, take a look at the following resources:
@@ -101,3 +102,28 @@ To learn more about React Native, take a look at the following resources:
 - [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
 - [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
 - [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+
+---
+
+## Repository Submissions
+
+Challenge solutions must be submitted as pull requests that will be reviewed by the pass team.
+
+### Creating a Pull Request
+
+Assuming you have a GitHub account, you may submit the pull request by following.
+
+#### Fork
+
+1. Create a fork of the repository to your own account and create a new branch with the naming convention:\
+   `$ git checkout -b sol/USERNAME`
+2. Use the guideline above to put your solution code in the challenge directory
+3. Run the following commands to push the code into you forked branch:
+
+```sh
+$ git add -A
+$ git commit -m 'challenge solution'
+$ git push origin sol/USERNAME
+```
+
+4. Share your forked repo which contains the solution. Pass team will review and let you know the next steps.
