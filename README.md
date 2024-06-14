@@ -4,65 +4,88 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
-## Step 1: Start the Metro Server
+# Pass HQ Test App
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+This repository contains a sample React Native application designed to evaluate the skills of a QA engineer. The application includes functionalities such as creating and authorizing passkeys, validating forms, and navigating between screens.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Table of Contents
 
-```bash
-# using npm
-npm start
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Testing](#testing)
 
-# OR using Yarn
-yarn start
-```
+## Installation
 
-## Step 2: Start your Application
+Follow these steps to set up the project locally:
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/PassHQ/pass-challenge.git
+    cd pass-challenge
+    ```
 
-### For Android
+2. **Install dependencies**:
+    ```sh
+    npm install
+    ```
 
-```bash
-# using npm
-npm run android
+3. **Install pods for iOS**:
+    ```sh
+    npx pod-install
+    ```
 
-# OR using Yarn
-yarn android
-```
+4. **Start the development server**:
+    ```sh
+    npm start
+    ```
 
-### For iOS
+5. **Run the application**:
+    - For iOS:
+      ```sh
+      npm run ios
+      ```
+    - For Android:
+      ```sh
+      npm run android
+      ```
 
-```bash
-# using npm
-npm run ios
+## Usage
 
-# OR using Yarn
-yarn ios
-```
+- **Landing Screen**: Allows users to create a passkey or authorize an existing one.
+- **User Details Screen**: Displays user details after a successful login.
+- **Send Token Screen**: Allows users to enter a blockchain address and an amount to send tokens. It validates the inputs and calculates transaction fees.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## Features
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+- **Passkey Support**: Checks if passkey is supported on the device.
+- **Form Validation**: Validates display name input on the landing screen and blockchain address and amount on the send token screen.
+- **Navigation**: Includes navigation between different screens.
+- **AsyncStorage**: Stores the registration status of the user.
+- **Mock API**: Includes a mock API to calculate transaction fees.
 
-## Step 3: Modifying your App
+## Testing
 
-Now that you have successfully run the app, let's modify it.
+The QA candidate should focus on end-to-end testing of the application. The recommended framework for end-to-end testing is [Detox](https://wix.github.io/Detox/).
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Areas to Test
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+1. **Form Validation**:
+    - Ensure the display name is required on the landing screen.
+    - Validate the blockchain address and amount on the send token screen.
 
-## Congratulations! :tada:
+2. **Passkey Functionality**:
+    - Test the creation of a new passkey.
+    - Test the authorization of an existing passkey.
 
-You've successfully run and modified your React Native App. :partying_face:
+3. **Navigation**:
+    - Verify navigation between the landing screen, user details screen, and send token screen.
 
-### Now what?
+4. **AsyncStorage**:
+    - Ensure the registration status is stored and retrieved correctly.
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+5. **Error Handling**:
+    - Check how the app handles errors during passkey creation and authorization.
 
 # Troubleshooting
 
