@@ -46,7 +46,7 @@ Follow these steps to set up the project locally:
 1. **Clone the repository**:
     ```sh
     git clone https://github.com/PassHQ/pass-challenge.git
-    cd pass-challenge
+    cd pass-challenge/pass-app
     ```
 
 2. **Install dependencies**:
@@ -54,7 +54,7 @@ Follow these steps to set up the project locally:
     npm install
     ```
 
-3. **Install pods for iOS**:
+3. **Install pods for iOS (for windows skip to step 4)**:
     ```sh
     npx pod-install
     ```
