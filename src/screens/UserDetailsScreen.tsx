@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, Button} from 'react-native';
 import {NavigationProp, RouteProp} from '@react-navigation/native';
+import Wrapper from '../components/Wrapper';
 
 type UserDetailsScreenNavigationProp = NavigationProp<
   RootStackParamList,
@@ -18,13 +19,15 @@ const UserDetailsScreen: React.FC<Props> = ({route, navigation}) => {
   const handleSendToken = () => navigation.navigate('SendToken');
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>User Details</Text>
-      <Text style={styles.detail}>User ID: {userId}</Text>
-      <Text style={styles.detail}>Name: {name}</Text>
-      <Text style={styles.detail}>Display Name: {displayName}</Text>
-      <Button title="Send Tokens" onPress={handleSendToken} />
-    </View>
+    <Wrapper>
+      <View style={styles.container}>
+        <Text style={styles.title}>User Details</Text>
+        <Text style={styles.detail}>User ID: {userId}</Text>
+        <Text style={styles.detail}>Name: {name}</Text>
+        <Text style={styles.detail}>Display Name: {displayName}</Text>
+        <Button title="Send Tokens" onPress={handleSendToken} />
+      </View>
+    </Wrapper>
   );
 };
 

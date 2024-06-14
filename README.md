@@ -76,7 +76,6 @@ The QA candidate should focus on end-to-end testing of the application. The reco
 
 2. **Passkey Functionality**:
     - Test the creation of a new passkey.
-    - Test the authorization of an existing passkey.
 
 3. **Navigation**:
     - Verify navigation between the landing screen, user details screen, and send token screen.

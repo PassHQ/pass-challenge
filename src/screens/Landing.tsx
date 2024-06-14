@@ -1,17 +1,18 @@
 import React, {useEffect, useState, useCallback} from 'react';
 import {
-  View,
   Text,
   TextInput,
   StyleSheet,
   TouchableOpacity,
   Alert,
+  View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Passkey} from 'react-native-passkey';
-import {createPassKey, requestPassKeyAuthorization} from '../utils/passkey';
+import {createPassKey} from '../utils/passkey';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Wrapper from '../components/Wrapper';
 
 type RootStackParamList = {
   Home: undefined;
@@ -44,11 +45,6 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
 
   const handlePassKeyAuthorization = useCallback(async () => {
     try {
-      await requestPassKeyAuthorization({
-        payload: '',
-        subOrgId: '',
-        walletAddress: 'holla',
-      });
       navigation.navigate('UserDetails', {
         userId: 'Pass QA Tester',
         name: 'Pass QA Tester name',
@@ -64,7 +60,7 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
     const checkRegistration = async () => {
       const registered = await AsyncStorage.getItem('registered');
       if (registered) {
-        // handlePassKeyAuthorization();
+        handlePassKeyAuthorization();
       }
     };
     checkRegistration();
@@ -102,29 +98,32 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Pass HQ Test App</Text>
-      <Text style={styles.description}>
-        Are you ready to prove your skills? This app is designed to test your
-        capabilities for a QA position. Show us what you can do and take your
-        career to the next level.
-      </Text>
-      <Text style={styles.note}>
-        Click the "Continue to App" button to create a passkey for your session.
-      </Text>
-      <Text style={[styles.support, isSupported && styles.isSupported]}>
-        Passkey is {isSupported ? 'supported' : 'not supported'} on this device.
-      </Text>
-      <TextInput
-        style={[styles.input, !isDisplayNameValid && styles.inputError]}
-        placeholder="Enter your display name"
-        value={displayName}
-        onChangeText={handleTextChange}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleContinue}>
-        <Text style={styles.buttonText}>Create passkey</Text>
-      </TouchableOpacity>
-    </View>
+    <Wrapper>
+      <View style={styles.container}>
+        <Text style={styles.title}>Pass HQ Test App</Text>
+        <Text style={styles.description}>
+          Are you ready to prove your skills? This app is designed to test your
+          capabilities for a QA position. Show us what you can do.
+        </Text>
+        <Text style={styles.note}>
+          Click the "Continue to App" button to create a passkey for your
+          session.
+        </Text>
+        <Text style={[styles.support, isSupported && styles.isSupported]}>
+          Passkey is {isSupported ? 'supported' : 'not supported'} on this
+          device.
+        </Text>
+        <TextInput
+          style={[styles.input, !isDisplayNameValid && styles.inputError]}
+          placeholder="Enter your display name"
+          value={displayName}
+          onChangeText={handleTextChange}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleContinue}>
+          <Text style={styles.buttonText}>Create passkey</Text>
+        </TouchableOpacity>
+      </View>
+    </Wrapper>
   );
 };
 

@@ -8,6 +8,7 @@ import {
   Alert,
 } from 'react-native';
 import {calculateFees} from '../utils/mockApi';
+import Wrapper from '../components/Wrapper';
 
 const SendTokenScreen: React.FC = () => {
   const [address, setAddress] = useState('');
@@ -54,40 +55,44 @@ const SendTokenScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Send Token</Text>
-      <TextInput
-        style={[styles.input, errors.address && styles.inputError]}
-        placeholder="Blockchain Address"
-        value={address}
-        onChangeText={text => {
-          setAddress(text);
-          if (errors.address) {
-            setErrors(prev => ({...prev, address: undefined}));
-          }
-        }}
-      />
-      {errors.address && <Text style={styles.errorText}>{errors.address}</Text>}
-      <TextInput
-        style={[styles.input, errors.amount && styles.inputError]}
-        placeholder="Amount (ETH)"
-        keyboardType="numeric"
-        value={amount}
-        onChangeText={text => {
-          setAmount(text);
-          if (errors.amount) {
-            setErrors(prev => ({...prev, amount: undefined}));
-          }
-        }}
-      />
-      {errors.amount && <Text style={styles.errorText}>{errors.amount}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleSend}>
-        <Text style={styles.buttonText}>Send Token</Text>
-      </TouchableOpacity>
-      {fees !== null && (
-        <Text style={styles.feesText}>Calculated Fees: {fees} ETH</Text>
-      )}
-    </View>
+    <Wrapper>
+      <View style={styles.container}>
+        <Text style={styles.title}>Send Token</Text>
+        <TextInput
+          style={[styles.input, errors.address && styles.inputError]}
+          placeholder="Blockchain Address"
+          value={address}
+          onChangeText={text => {
+            setAddress(text);
+            if (errors.address) {
+              setErrors(prev => ({...prev, address: undefined}));
+            }
+          }}
+        />
+        {errors.address && (
+          <Text style={styles.errorText}>{errors.address}</Text>
+        )}
+        <TextInput
+          style={[styles.input, errors.amount && styles.inputError]}
+          placeholder="Amount (ETH)"
+          keyboardType="numeric"
+          value={amount}
+          onChangeText={text => {
+            setAmount(text);
+            if (errors.amount) {
+              setErrors(prev => ({...prev, amount: undefined}));
+            }
+          }}
+        />
+        {errors.amount && <Text style={styles.errorText}>{errors.amount}</Text>}
+        <TouchableOpacity style={styles.button} onPress={handleSend}>
+          <Text style={styles.buttonText}>Send Token</Text>
+        </TouchableOpacity>
+        {fees !== null && (
+          <Text style={styles.feesText}>Calculated Fees: {fees} ETH</Text>
+        )}
+      </View>
+    </Wrapper>
   );
 };
 
