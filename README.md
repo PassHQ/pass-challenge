@@ -1,12 +1,36 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# The Challenge
+
+The Pass App test is a React Native application designed to evaluate the skills of a QA engineer. It includes functionalities such as creating and authorizing passkeys, validating forms, and navigating between screens. 
+
+Your task is to develop a test plan and test cases to comprehensively test end-to-end functionality using the Detox framework (if you are familiar with other framework, please feel free to change the configuration and add test accordingly) to ensure the application's functionality, reliability, and user experience.
+
+## Key Areas to Focus
+
+1. **Form Validation**:
+    - Ensure the display name is required on the landing screen.
+    - Validate the blockchain address and amount on the send token screen.
+
+2. **Passkey Functionality**:
+    - Test the creation of a new passkey.
+
+3. **Navigation**:
+    - Verify navigation between the landing screen, user details screen, and send token screen.
+
+4. **AsyncStorage**:
+    - Ensure the registration status is stored and retrieved correctly.
+
+5. **Error Handling**:
+    - Check how the app handles errors during passkey creation and authorization.
+
+Remember, as a QA engineer, your role is crucial in ensuring the quality and reliability of the application. Your attention to detail, analytical skills, and problem-solving abilities will be invaluable in identifying and resolving any issues or bugs in the Pass App.
+
+I wish you the best of luck with this coding challenge. Should you have any questions or require further assistance, please don't hesitate to reach out.
+
+---
 
 # Getting Started
 
 >**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-# Pass HQ Test App
-
-This repository contains a sample React Native application designed to evaluate the skills of a QA engineer. The application includes functionalities such as creating and authorizing passkeys, validating forms, and navigating between screens.
 
 ## Table of Contents
 
@@ -63,28 +87,6 @@ Follow these steps to set up the project locally:
 - **Navigation**: Includes navigation between different screens.
 - **AsyncStorage**: Stores the registration status of the user.
 - **Mock API**: Includes a mock API to calculate transaction fees.
-
-## Testing
-
-The QA candidate should focus on end-to-end testing of the application. The recommended framework for end-to-end testing is [Detox](https://wix.github.io/Detox/).
-
-### Areas to Test
-
-1. **Form Validation**:
-    - Ensure the display name is required on the landing screen.
-    - Validate the blockchain address and amount on the send token screen.
-
-2. **Passkey Functionality**:
-    - Test the creation of a new passkey.
-
-3. **Navigation**:
-    - Verify navigation between the landing screen, user details screen, and send token screen.
-
-4. **AsyncStorage**:
-    - Ensure the registration status is stored and retrieved correctly.
-
-5. **Error Handling**:
-    - Check how the app handles errors during passkey creation and authorization.
 
 # Troubleshooting
 
