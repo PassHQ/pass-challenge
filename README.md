@@ -127,3 +127,8 @@ $ git push origin sol/USERNAME
 ```
 
 4. Share your forked repo which contains the solution. Pass team will review and let you know the next steps.
+
+### Notes
+- Passkey creation does not work on the iOS simulator, so these tests should be run on a real android/iOS device and an Android emulator.
+- Make sure to have the necessary dependencies and configurations for Detox as specified in the Detox documentation.
+- This test plan and set of test cases should provide comprehensive coverage of the key functionalities of the Pass Test App.
