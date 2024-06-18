@@ -51,7 +51,7 @@ Follow these steps to set up the project locally:
 
 2. **Install dependencies**:
     ```sh
-    npm install
+    yarn
     ```
 
 3. **Install pods for iOS (for windows skip to step 4)**:
