@@ -61,17 +61,17 @@ Follow these steps to set up the project locally:
 
 4. **Start the development server**:
     ```sh
-    npm start
+    yarn start
     ```
 
 5. **Run the application**:
     - For iOS:
       ```sh
-      npm run ios
+      yarn run ios
       ```
     - For Android:
       ```sh
-      npm run android
+      yarn run android
       ```
 
 ## Usage
