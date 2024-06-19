@@ -39,9 +39,49 @@ I wish you the best of luck with this coding challenge. Should you have any ques
 - [Features](#features)
 - [Testing](#testing)
 
+
 ## Installation
 
-Follow these steps to set up the project locally:
+### Environment Setup
+
+This provides the steps to set up the development environment for the Pass App React Native application.
+
+### Prerequisites
+
+1. **Java Development Kit (JDK)**
+    - Ensure Java version is OpenJDK 17.0.9:
+    ```sh
+    java -version
+    ```
+    - If you don't have OpenJDK 17.0.9 installed, you can download it from the [OpenJDK website](https://jdk.java.net/17/).
+    - Alternatively you can install via homebrew using
+    ```sh
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    brew install openjdk@17
+    ```
+
+2. **Xcode**
+    - Make sure you have the latest version of Xcode installed from the [Mac App Store](https://apps.apple.com/us/app/xcode/id497799835?mt=12).
+    - Install Command Line Tools for Xcode:
+    ```sh
+    xcode-select --install
+    ```
+
+3. **Android Studio**
+    - Install the latest version of Android Studio from the [official website](https://developer.android.com/studio).
+    - Set up the Android SDK and ensure the necessary emulators are installed.
+
+4. **Node.js and npm (using nvm)**
+    - Install `nvm` (Node Version Manager) by following the instructions on the [nvm repository](https://github.com/nvm-sh/nvm#installing-and-updating).
+    - Install Node.js and npm using `nvm`:
+    ```sh
+    nvm install v20.10.0
+    nvm use v20.10.0
+    node -v
+    ```
+
+### Setting up the project
 
 1. **Clone the repository**:
     ```sh
