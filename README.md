@@ -1,6 +1,6 @@
 # The Challenge
 
-The Pass App test is a React Native application designed to evaluate the skills of a QA engineer. It includes functionalities such as creating and authorizing passkeys, validating forms, and navigating between screens. 
+The Pass App test is a React Native application designed to evaluate the skills of a QA engineer. It includes functionalities such as creating login access, validating forms, and navigating between screens. 
 
 Your task is to develop a test plan and test cases to comprehensively test end-to-end functionality using the Detox framework (if you are familiar with other framework, please feel free to change the configuration and add test accordingly) to ensure the application's functionality, reliability, and user experience.
 
@@ -10,8 +10,10 @@ Your task is to develop a test plan and test cases to comprehensively test end-t
     - Ensure the display name is required on the landing screen.
     - Validate the blockchain address and amount on the send token screen.
 
-2. **Passkey Functionality**:
-    - Test the creation of a new passkey.
+2. **Authentication Functionality**:
+    - Test the creation of a new credentials.
+
+    For the purpose of this test, we just store the user details on the device local sorage
 
 3. **Navigation**:
     - Verify navigation between the landing screen, user details screen, and send token screen.
@@ -20,7 +22,7 @@ Your task is to develop a test plan and test cases to comprehensively test end-t
     - Ensure the registration status is stored and retrieved correctly.
 
 5. **Error Handling**:
-    - Check how the app handles errors during passkey creation and authorization.
+    - Check how the app handles errors during sending tokens.
 
 Remember, as a QA engineer, your role is crucial in ensuring the quality and reliability of the application. Your attention to detail, analytical skills, and problem-solving abilities will be invaluable in identifying and resolving any issues or bugs in the Pass App.
 
@@ -116,13 +118,12 @@ This provides the steps to set up the development environment for the Pass App R
 
 ## Usage
 
-- **Landing Screen**: Allows users to create a passkey or authorize an existing one.
+- **Landing Screen**: Allows users to login to the app by providing a user display name.
 - **User Details Screen**: Displays user details after a successful login.
 - **Send Token Screen**: Allows users to enter a blockchain address and an amount to send tokens. It validates the inputs and calculates transaction fees.
 
 ## Features
 
-- **Passkey Support**: Checks if passkey is supported on the device.
 - **Form Validation**: Validates display name input on the landing screen and blockchain address and amount on the send token screen.
 - **Navigation**: Includes navigation between different screens.
 - **AsyncStorage**: Stores the registration status of the user.
@@ -169,6 +170,6 @@ $ git push origin sol/USERNAME
 4. Share your forked repo which contains the solution. Pass team will review and let you know the next steps.
 
 ### Notes
-- Passkey creation does not work on the iOS simulator, so these tests should be run on a real android/iOS device and an Android emulator.
 - Make sure to have the necessary dependencies and configurations for Detox as specified in the Detox documentation.
 - This test plan and set of test cases should provide comprehensive coverage of the key functionalities of the Pass Test App.
+- You can use this address `0x3fb6966891700924b3e7f3cf20cf1c42f4156be6` to test the send token functionality and validation of address
