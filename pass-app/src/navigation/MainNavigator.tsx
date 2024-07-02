@@ -1,4 +1,5 @@
 import React from 'react';
+import {View} from 'react-native';
 import {
   createStackNavigator,
   StackNavigationOptions,
@@ -10,15 +11,27 @@ import SendTokenScreen from '../screens/SendTokenScreen';
 const Stack = createStackNavigator<RootStackParamList>();
 
 const screenOptions: StackNavigationOptions = {
-  headerShown: false,
+  headerBackground: () => <View />,
 };
 
 function MainNavigator() {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
       <Stack.Screen name="Home" component={LandingScreen} />
-      <Stack.Screen name="UserDetails" component={UserDetailsScreen} />
-      <Stack.Screen name="SendToken" component={SendTokenScreen} />
+      <Stack.Screen
+        name="UserDetails"
+        component={UserDetailsScreen}
+        options={{
+          title: 'User Details',
+        }}
+      />
+      <Stack.Screen
+        name="SendToken"
+        component={SendTokenScreen}
+        options={{
+          title: 'Send Token',
+        }}
+      />
     </Stack.Navigator>
   );
 }

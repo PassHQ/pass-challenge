@@ -8,8 +8,6 @@ import {
   View,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {Passkey} from 'react-native-passkey';
-import {createPassKey} from '../utils/passkey';
 import {RouteProp} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import Wrapper from '../components/Wrapper';
@@ -31,40 +29,36 @@ type Props = {
 };
 
 const LandingScreen: React.FC<Props> = ({navigation}) => {
-  const [isSupported, setIsSupported] = useState(false);
   const [displayName, setDisplayName] = useState('');
   const [isDisplayNameValid, setIsDisplayNameValid] = useState(true);
 
-  useEffect(() => {
-    const checkSupport = async () => {
-      const supported = await Passkey.isSupported();
-      setIsSupported(supported);
-    };
-    checkSupport();
-  }, []);
-
-  const handlePassKeyAuthorization = useCallback(async () => {
-    try {
-      navigation.navigate('UserDetails', {
-        userId: 'Pass QA Tester',
-        name: 'Pass QA Tester name',
-        displayName: 'QA Tester name',
-      });
-    } catch (error) {
-      console.log(error);
-      Alert.alert('Authorization Error', JSON.stringify(error));
-    }
-  }, [navigation]);
+  const handleAuthorization = useCallback(
+    async (displayName: string) => {
+      try {
+        navigation.navigate('UserDetails', {
+          userId: 'Pass QA Tester',
+          name: 'Pass QA Tester name',
+          displayName: displayName,
+        });
+      } catch (error) {
+        console.log(error);
+        Alert.alert('Authorization Error', JSON.stringify(error));
+      }
+    },
+    [navigation],
+  );
 
   useEffect(() => {
     const checkRegistration = async () => {
       const registered = await AsyncStorage.getItem('registered');
-      if (registered) {
-        handlePassKeyAuthorization();
+      const userDisplayName = await AsyncStorage.getItem('displayName');
+
+      if (registered && userDisplayName) {
+        handleAuthorization(userDisplayName);
       }
     };
     checkRegistration();
-  }, [handlePassKeyAuthorization]);
+  }, [handleAuthorization]);
 
   const handleContinue = async () => {
     if (!displayName) {
@@ -73,12 +67,8 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
       return;
     }
     try {
-      await createPassKey({
-        userId: 'Pass QA Tester',
-        name: 'Pass QA Tester name',
-        displayName: displayName,
-      });
       await AsyncStorage.setItem('registered', 'true');
+      await AsyncStorage.setItem('displayName', displayName);
       navigation.navigate('UserDetails', {
         userId: 'Pass QA Tester',
         name: 'Pass QA Tester name',
@@ -106,12 +96,8 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
           capabilities for a QA position. Show us what you can do.
         </Text>
         <Text style={styles.note}>
-          Click the "Continue to App" button to create a passkey for your
+          Click the "Continue to App" button to create credentials for your
           session.
-        </Text>
-        <Text style={[styles.support, isSupported && styles.isSupported]}>
-          Passkey is {isSupported ? 'supported' : 'not supported'} on this
-          device.
         </Text>
         <TextInput
           style={[styles.input, !isDisplayNameValid && styles.inputError]}
@@ -120,7 +106,7 @@ const LandingScreen: React.FC<Props> = ({navigation}) => {
           onChangeText={handleTextChange}
         />
         <TouchableOpacity style={styles.button} onPress={handleContinue}>
-          <Text style={styles.buttonText}>Create passkey</Text>
+          <Text style={styles.buttonText}>Continue to App</Text>
         </TouchableOpacity>
       </View>
     </Wrapper>
