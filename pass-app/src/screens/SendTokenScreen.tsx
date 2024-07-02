@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import {View, Text, TextInput, StyleSheet, Alert, Button} from 'react-native';
 import {calculateFees} from '../utils/mockApi';
 import Wrapper from '../components/Wrapper';
 
@@ -15,6 +8,7 @@ const SendTokenScreen: React.FC = () => {
   const [amount, setAmount] = useState('');
   const [errors, setErrors] = useState<{address?: string; amount?: string}>({});
   const [fees, setFees] = useState<number | null>(null);
+  const [isFetchingFees, setIsFetchingFees] = useState(false);
 
   const validateAddress = (address: string) => {
     const re = /^0x[a-fA-F0-9]{40}$/; // Basic regex for Ethereum addresses
@@ -28,7 +22,7 @@ const SendTokenScreen: React.FC = () => {
 
   const handleSend = async () => {
     let valid = true;
-    let errors: {address?: string; amount?: string} = {};
+    const errors: {address?: string; amount?: string} = {};
 
     if (!validateAddress(address)) {
       valid = false;
@@ -44,12 +38,15 @@ const SendTokenScreen: React.FC = () => {
 
     if (valid) {
       try {
+        setIsFetchingFees(true);
         const calculatedFees = await calculateFees(parseFloat(amount));
         setFees(calculatedFees);
         Alert.alert('Success', `Transaction fees: ${calculatedFees} ETH`);
         // Proceed with sending the token
       } catch (error) {
         Alert.alert('Error', 'Failed to calculate transaction fees');
+      } finally {
+        setIsFetchingFees(false);
       }
     }
   };
@@ -59,7 +56,7 @@ const SendTokenScreen: React.FC = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Send Token</Text>
         <TextInput
-          style={[styles.input, errors.address && styles.inputError]}
+          style={[styles.input, errors.address ? styles.inputError : null]}
           placeholder="Blockchain Address"
           value={address}
           onChangeText={text => {
@@ -73,7 +70,7 @@ const SendTokenScreen: React.FC = () => {
           <Text style={styles.errorText}>{errors.address}</Text>
         )}
         <TextInput
-          style={[styles.input, errors.amount && styles.inputError]}
+          style={[styles.input, errors.amount ? styles.inputError : null]}
           placeholder="Amount (ETH)"
           keyboardType="numeric"
           value={amount}
@@ -85,12 +82,12 @@ const SendTokenScreen: React.FC = () => {
           }}
         />
         {errors.amount && <Text style={styles.errorText}>{errors.amount}</Text>}
-        <TouchableOpacity style={styles.button} onPress={handleSend}>
-          <Text style={styles.buttonText}>Send Token</Text>
-        </TouchableOpacity>
-        {fees !== null && (
-          <Text style={styles.feesText}>Calculated Fees: {fees} ETH</Text>
-        )}
+        <Button
+          title="Send Token"
+          onPress={handleSend}
+          disabled={isFetchingFees}
+        />
+        {fees !== null && <Text>Calculated Fees: {fees} ETH</Text>}
       </View>
     </Wrapper>
   );
